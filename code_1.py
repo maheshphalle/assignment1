@@ -31,7 +31,7 @@ def get_task(task_id):
 def post():
     if request.method == 'POST':
         jsondata = request.get_json(force=True)
-        app.append(jsondata)
+        tasks.append(jsondata)
         return ("You are getting a post request")
 
 if __name__ == '__main__':
