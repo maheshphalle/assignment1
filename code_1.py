@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request, abort
 
 app = Flask(__name__)
-
 tasks = [
     {
         'id': 1,
@@ -17,18 +16,16 @@ tasks = [
     }
 ]
 
+@app.route('/tasks', methods=['GET'])
+def get_tasks():
+    return jsonify({'tasks': tasks})
 
-@app.route ('/task', method=['GET'])
+@app.route('/tasks/<int:task_id>', methods=['GET'])
+def get_task(task_id):
+    task = next((task for task in tasks if task['id'] == task_id), None)
+    if task is None:
+        abort(404)
+    return jsonify({'task': task})
 
-def get_tasks()
-    return jsonify({'tasks':tasks})
-
-
-@app.route ('/task/<int:task_id>',method=['GET'])
-def get_task(task.id):
-        task = next((task for task in tasks['id'] == task_id)), None)
-
-        if task is none:
-                abort(404)
-
-        return jsonify({'task':task})
+if __name__ == '__main__':
+    app.run(debug=True)
