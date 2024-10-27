@@ -13,6 +13,12 @@ tasks = [
         'title': 'Learn Python',
         'description': 'Need to find a good Python tutorial on the web',
         'done': False
+    },
+    {
+        'id': 3,
+        'title': 'Learn Github',
+        'description': 'merging all the developers file into remote',
+        'done': False
     }
 ]
 
