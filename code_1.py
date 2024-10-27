@@ -26,6 +26,17 @@ tasks = [
 def get_tasks():
     return jsonify({'tasks': tasks})
 
+@app.route('/updateTask', methods=['PUT'])
+def updateTask():
+    taskInput = request.json
+    for task in tasks:
+        if task["title"] == taskInput["title"]:
+            task["description"] = taskInput["description"]
+            break
+    else:
+        tasks.append(taskInput)
+    return jsonify(tasks)
+
 @app.route('/tasks/<int:task_id>', methods=['GET'])
 def get_task(task_id):
     task = next((task for task in tasks if task['id'] == task_id), None)
