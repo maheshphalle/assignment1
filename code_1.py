@@ -27,5 +27,12 @@ def get_task(task_id):
         abort(404)
     return jsonify({'task': task})
 
+@app.route('/post', methods=["POST"])
+def post():
+    if request.method == 'POST':
+        jsondata = request.get_json(force=True)
+        app.append(jsondata)
+        return ("You are getting a post request")
+
 if __name__ == '__main__':
     app.run(debug=True)
